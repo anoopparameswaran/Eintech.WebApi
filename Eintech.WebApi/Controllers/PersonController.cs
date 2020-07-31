@@ -14,7 +14,7 @@ namespace Eintech.WebApi.Controllers
             this._personRepository = personRepository;
         }
         /// <summary>
-        /// Creates new person record
+        /// Post method to create new person record
         /// </summary>
         /// <param name="person"></param>
         /// <returns></returns>
