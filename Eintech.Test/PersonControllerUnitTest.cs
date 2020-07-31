@@ -1,6 +1,7 @@
 using Eintech.Data;
 using Eintech.Data.Entities;
 using Eintech.WebApi.Controllers;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using Xunit;
@@ -33,11 +34,12 @@ namespace Eintech.Test
         public void ShouldAddPersonMethodReturnPersonObjectWithSavedData()
         {
             var result = _personController.Post(_person);
-
-            Assert.NotNull(_person);
-            Assert.Equal(result.Result.Name, _person.Name);
-            Assert.Equal(result.Result.DateAdded, _person.DateAdded);
-            Assert.Equal(result.Result.Id, _person.Id);
+            var okResult = result.Result as OkObjectResult;
+            Assert.NotNull(okResult);
+            var testPerson = okResult.Value as Person;
+            Assert.Equal(testPerson.Name, _person.Name);
+            Assert.Equal(testPerson.DateAdded, _person.DateAdded);
+            Assert.Equal(testPerson.Id, _person.Id);
         }
 
         [Fact]
