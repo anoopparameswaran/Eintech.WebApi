@@ -7,7 +7,7 @@ namespace Eintech.Data
     {
         public EintechDbContext(DbContextOptions<EintechDbContext> options) : base(options)
         {
-
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
         public DbSet<Person> People { get; set; }
     }
